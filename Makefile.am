@@ -23,18 +23,21 @@ SUBDIRS = . testsuite
 
 LIBOBJS = @LIBOBJS@
 
-noinst_LIBRARIES = libargp.a
 noinst_PROGRAMS = argp-test
-noinst_HEADERS = argp.h argp-fmtstream.h argp-namefrob.h # argp-comp.h
+noinst_HEADERS = argp-fmtstream.h argp-namefrob.h # argp-comp.h
 
 EXTRA_DIST = mempcpy.c strchrnul.c strndup.c Versions
 
+ACLOCAL_AMFLAGS = -I m4
+lib_LTLIBRARIES = libargp.la
 # Leaves out argp-fs-xinl.c and argp-xinl.c 
-libargp_a_SOURCES = argp-ba.c argp-eexst.c argp-fmtstream.c \
+libargp_la_SOURCES = argp-ba.c argp-eexst.c argp-fmtstream.c \
 		    argp-help.c argp-parse.c argp-pv.c \
 		    argp-pvh.c
+libargp_la_HEADERS = argp.h
+libargp_ladir = $(includedir)
 
-libargp_a_LIBADD = $(LIBOBJS)
+libargp_la_LIBADD = $(LIBOBJS)
 
-argp_test_LDADD = libargp.a
+argp_test_LDADD = libargp.la
 

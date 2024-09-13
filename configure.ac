@@ -3,7 +3,7 @@ dnl Process this file with autoconf to produce a configure script.
 dnl This configure.ac is only for building a standalone argp library.
 AC_PREREQ(2.54)
 AC_INIT(argp-ba.c)
-AM_INIT_AUTOMAKE(argp, standalone-1.4.0)
+AM_INIT_AUTOMAKE(argp, standalone-1.4.1)
 AM_CONFIG_HEADER(config.h)
 
 # GNU libc defaults to supplying the ISO C library functions only. The
@@ -17,6 +17,8 @@ AC_PROG_CC
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 AM_PROG_CC_STDC
+
+LT_INIT
 
 if test "x$am_cv_prog_cc_stdc" = xno ; then
   AC_ERROR([the C compiler doesn't handle ANSI-C])
@@ -92,5 +94,7 @@ if test x$GCC = xyes ; then
 fi
 
 CPPFLAGS="$CPPFLAGS -I$srcdir"
+
+PKG_INSTALLDIR
 
 AC_OUTPUT(Makefile testsuite/Makefile)
